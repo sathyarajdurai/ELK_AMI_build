@@ -1,0 +1,45 @@
+---
+  - hosts: default
+    become: true
+
+    tasks:
+      - name: update the apt-get
+        apt:
+          update_cache: yes
+      
+      - name: Add an Apt signing key to a specific keyring file
+        apt_key:
+          url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+          # keyring: gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+          state: present
+
+      - name: Install transport
+        apt:
+          name: "apt-transport-https"
+          state: present
+
+      - name: Adding Elastic APT repository
+        apt_repository:
+          repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+          state: present
+          filename: elastic-8.x.list
+          update_cache: yes
+
+      - name: install elasticsearch
+        apt:
+          name: elasticsearch
+          state: present
+          update_cache: yes
+
+      - name: Enabling elastic search service
+        systemd:
+          name: elasticsearch
+          enabled: yes
+          daemon_reload: yes
+# Start Kibana service
+      - name: Starting elastic search service
+        systemd:
+          name: elasticsearch
+          state: started
+      - name: Ensure elastic serach is running
+        systemd: state=started name=elasticsearch
