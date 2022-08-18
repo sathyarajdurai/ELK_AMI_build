@@ -31,6 +31,20 @@
           state: present
           update_cache: yes
 
+      - name: Updating the config file to allow outside access
+        lineinfile:
+          destfile: /etc/elasticsearch/elasticsearch.yml
+          regexp: 'network.host:'
+          line: 'network.host: 0.0.0.0'
+      
+# Update Elasticsearch port in config file 
+
+      - name: Updating the port in config file 
+        lineinfile:
+          destfile: /etc/elasticsearch/elasticsearch.yml
+          regexp: 'http.port:'
+          line: 'http.port: 9200'
+
       - name: Enabling elastic search service
         systemd:
           name: elasticsearch
@@ -41,5 +55,6 @@
         systemd:
           name: elasticsearch
           state: started
+          
       - name: Ensure elastic serach is running
         systemd: state=started name=elasticsearch

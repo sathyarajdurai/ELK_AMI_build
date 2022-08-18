@@ -11,11 +11,10 @@ source "amazon-ebs" "logstach" {
   ami_name      = "logstach"
   instance_type = "t3.small"
   region        = "eu-west-1"
-  vpc_id        = "vpc-068690f7e663ae059"
-  subnet_id     = "subnet-0a125bf978b34315e"
-  security_group_id = "sg-0f99edb9a26ae1b97"
+  vpc_id        = "vpc-08cbc14f8a64ad7ea"
+  subnet_id     = "subnet-056fd223dcb01834b"
+  security_group_id = "sg-0f5eb990c0fb9d266"
  
-
   source_ami_filter {
     filters = {
       name = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
@@ -50,9 +49,9 @@ source "amazon-ebs" "elasticsearch" {
   ami_name      = "elasticsearch"
   instance_type = "t3.small"
   region        = "eu-west-1"
-  vpc_id        = "vpc-068690f7e663ae059"
-  subnet_id     = "subnet-0a125bf978b34315e"
-  security_group_id = "sg-0f99edb9a26ae1b97"
+  vpc_id        = "vpc-08cbc14f8a64ad7ea"
+  subnet_id     = "subnet-056fd223dcb01834b"
+  security_group_id = "sg-0f5eb990c0fb9d266"
  
 
   source_ami_filter {
@@ -88,9 +87,9 @@ source "amazon-ebs" "kibana" {
   ami_name      = "kibana"
   instance_type = "t3.small"
   region        = "eu-west-1"
-  vpc_id        = "vpc-068690f7e663ae059"
-  subnet_id     = "subnet-0a125bf978b34315e"
-  security_group_id = "sg-0f99edb9a26ae1b97"
+  vpc_id        = "vpc-08cbc14f8a64ad7ea"
+  subnet_id     = "subnet-056fd223dcb01834b"
+  security_group_id = "sg-0f5eb990c0fb9d266"
  
 
   source_ami_filter {
