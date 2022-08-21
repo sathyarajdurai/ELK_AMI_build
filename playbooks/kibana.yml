@@ -28,23 +28,23 @@
           name: kibana
           update_cache: yes
 # Configure kibana.yml
-      - name: Updating the config file to allow outside access
-        lineinfile:
-          destfile: /etc/kibana/kibana.yml
-          regexp: 'server.host:'
-          line: 'server.host: 0.0.0.0'
+      # - name: Updating the config file to allow outside access
+      #   lineinfile:
+      #     destfile: /etc/kibana/kibana.yml
+      #     regexp: 'server.host:'
+      #     line: 'server.host: 0.0.0.0'
 
-      - name: Defining server port
-        lineinfile:
-          destfile: /etc/kibana/kibana.yml
-          regexp: 'server.port:'
-          line: 'server.port: 5601'
+      # - name: Defining server port
+      #   lineinfile:
+      #     destfile: /etc/kibana/kibana.yml
+      #     regexp: 'server.port:'
+      #     line: 'server.port: 5601'
     
-      - name: Defining Elasticsearch URL
-        lineinfile:
-          destfile: /etc/kibana/kibana.yml
-          regexp: 'elasticsearch.url:'
-          line: 'elasticsearch.url: "http://localhost:9200"'
+      # - name: Defining Elasticsearch URL
+      #   lineinfile:
+      #     destfile: /etc/kibana/kibana.yml
+      #     regexp: 'elasticsearch.url:'
+      #     line: 'elasticsearch.url: "http://localhost:9200"'
    
 # Enable Kibana service
       - name: Enabling Kibana service
