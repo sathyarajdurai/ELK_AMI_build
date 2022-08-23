@@ -13,7 +13,7 @@ source "amazon-ebs" "logstach" {
   region        = "eu-west-1"
   vpc_id        = "vpc-08cbc14f8a64ad7ea"
   subnet_id     = "subnet-056fd223dcb01834b"
-  security_group_id = "sg-0f5eb990c0fb9d266"
+  security_group_id = "sg-09fdeb0f6000b78d4"
  
   source_ami_filter {
     filters = {
@@ -51,7 +51,7 @@ source "amazon-ebs" "elasticsearch" {
   region        = "eu-west-1"
   vpc_id        = "vpc-08cbc14f8a64ad7ea"
   subnet_id     = "subnet-056fd223dcb01834b"
-  security_group_id = "sg-0f5eb990c0fb9d266"
+  security_group_id = "sg-09fdeb0f6000b78d4"
  
 
   source_ami_filter {
@@ -89,7 +89,7 @@ source "amazon-ebs" "kibana" {
   region        = "eu-west-1"
   vpc_id        = "vpc-08cbc14f8a64ad7ea"
   subnet_id     = "subnet-056fd223dcb01834b"
-  security_group_id = "sg-0f5eb990c0fb9d266"
+  security_group_id = "sg-09fdeb0f6000b78d4"
  
 
   source_ami_filter {

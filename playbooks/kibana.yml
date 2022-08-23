@@ -14,14 +14,14 @@
           
       - name: Install transport
         apt:
-          name: "apt-transport-https"
+          name: apt-transport-https
           state: present
 
       - name: Adding APT repository
         apt_repository:
-          repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+          repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
           state: present
-          filename: elastic-8.x.list
+          filename: elastic-7.x.list
           update_cache: yes
       - name: Update repositories cache and install Kibana
         apt:
