@@ -1,0 +1,18 @@
+---
+  - hosts: default
+    become: true
+
+    tasks:
+      - name: update the apt-get
+        apt:
+          update_cache: yes
+  
+      - name: Adding filebeat repository
+        get_url:
+          url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.6-amd64.deb
+          dest: /home/ubuntu
+
+      - name: install file beats
+        shell:
+          apt-get install /home/ubuntu/filebeat-7.17.6-amd64.deb
+          
