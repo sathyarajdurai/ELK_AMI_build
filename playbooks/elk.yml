@@ -28,18 +28,22 @@
           filename: elastic-7.x.list
           update_cache: yes
 
-      - name: Update repositories cache and install Logstash
+      - name: Update repositories cache and install {{app}}
         apt:
           name: "{{app}}"
           update_cache: yes
 
-      - name: Enabling logstash service
+      # - name: elasticsearch user credentials
+      #   ansible.builtin.shell: bin/elasticsearch-setup-passwords auto --silent
+      #   register: contents
+        
+      - name: Enabling {{app}} service
         systemd:
           name: "{{app}}"
           enabled: yes
           daemon_reload: yes
 # Start Kibana service
-      - name: Starting logstash service
+      - name: Starting {{app}} service
         systemd:
           name: "{{app}}"
           state: started
