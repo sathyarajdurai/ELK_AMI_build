@@ -1,0 +1,52 @@
+---
+  - hosts: default
+    become: true
+
+    tasks:
+      - name: update the apt-get
+        apt:
+          update_cache: yes
+      
+      - name: install java
+        apt:
+          name: default-jre
+
+      - name: Add an Apt signing key to a specific keyring file
+        apt_key:
+          url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+          state: present
+          
+      - name: Install transport
+        apt:
+          name: apt-transport-https
+          state: present
+
+      - name: Adding APT repository
+        apt_repository:
+          repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+          state: present
+          filename: elastic-7.x.list
+          update_cache: yes
+
+      - name: Update repositories cache and install {{app}}
+        apt:
+          name: "{{app}}"
+          update_cache: yes
+
+      # - name: elasticsearch user credentials
+      #   ansible.builtin.shell: bin/elasticsearch-setup-passwords auto --silent
+      #   register: contents
+        
+      - name: Enabling {{app}} service
+        systemd:
+          name: "{{app}}"
+          enabled: yes
+          daemon_reload: yes
+# Start Kibana service
+      - name: Starting {{app}} service
+        systemd:
+          name: "{{app}}"
+          state: started
+          
+      - name: Ensure "{{app}}" is running
+        systemd: state=started name="{{app}}"
