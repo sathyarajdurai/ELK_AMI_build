@@ -2,8 +2,7 @@ name: packer ami build deployment in AWS
 on: 
   push:
     branches:
-      main
-    
+      main  
 jobs:
   packer-deploy:
     runs-on:  ubuntu-latest
