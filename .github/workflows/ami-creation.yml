@@ -28,7 +28,7 @@ jobs:
         with:
           command: validate
           arguments: -syntax-only
-          target: ubuntu-ami.pkr.hcl
+          target: elk.pkr.hcl
 
       - name:  Packer initialization
         run:  packer init .
