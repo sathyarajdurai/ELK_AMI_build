@@ -22,42 +22,42 @@ variable "logstash" {
   default = "logstash"
 }
 
-// source "amazon-ebs" "logstash" {
-//   ami_name      = "logstash"
-//   instance_type = "t3.small"
-//   region        = "eu-west-1"
-//   vpc_id        = "vpc-032d32b3f644a7764"
-//   subnet_id     = "subnet-0403a66cf54e3cdf7"
-//   security_group_id = "sg-0ffd80042080df979"
+source "amazon-ebs" "logstash" {
+  ami_name      = "logstash"
+  instance_type = "t3.small"
+  region        = "eu-west-1"
+  vpc_id        = "vpc-032d32b3f644a7764"
+  subnet_id     = "subnet-0403a66cf54e3cdf7"
+  security_group_id = "sg-0ffd80042080df979"
  
-//   source_ami_filter {
-//     filters = {
-//       name = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
-//       root-device-type    = "ebs"
-//       virtualization-type = "hvm"
-//     }
-//     most_recent = true
-//     owners      = ["099720109477"]
-//   }
-//     ssh_username = "ubuntu"
-//     tags = {
-//       "Name" = "logstach-Server"
-//     }
-//   deprecate_at = timeadd(timestamp(), "8766h")
-//   force_deregister  = "true"
-//   force_delete_snapshot = "true"
-// }
+  source_ami_filter {
+    filters = {
+      name = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+      root-device-type    = "ebs"
+      virtualization-type = "hvm"
+    }
+    most_recent = true
+    owners      = ["099720109477"]
+  }
+    ssh_username = "ubuntu"
+    tags = {
+      "Name" = "logstach-Server"
+    }
+  deprecate_at = timeadd(timestamp(), "8766h")
+  force_deregister  = "true"
+  force_delete_snapshot = "true"
+}
 
-// build {
-//   name = "logstash-packer"
-//   sources = [
-//     "source.amazon-ebs.logstash",
-//   ]
-//   provisioner "ansible" {
-//     playbook_file   = "./playbooks/elk.yml"
-//     extra_arguments = ["--extra-vars", "app=${var.logstash}"]
-//   }
-// }
+build {
+  name = "logstash-packer"
+  sources = [
+    "source.amazon-ebs.logstash",
+  ]
+  provisioner "ansible" {
+    playbook_file   = "./playbooks/elk.yml"
+    extra_arguments = ["--extra-vars", "app=${var.logstash}"]
+  }
+}
 
 
 source "amazon-ebs" "elasticsearch" {
